@@ -1,8 +1,8 @@
 {
-    "name": "user/ipt10-strapi-ecommerce",
+    "name": "calvinkent/ipt10-strapi-website-integration",
     "autoload": {
         "psr-4": {
-            "User\\Ipt10StrapiEcommerce\\": "src/"
+            "Calvinkent\\Ipt10StrapiWebsiteIntegration\\": "src/"
         }
     },
     "authors": [
@@ -12,6 +12,7 @@
         }
     ],
     "require": {
-        "guzzlehttp/guzzle": "^7.5"
+        "guzzlehttp/guzzle": "^7.5",
+        "mongodb/mongodb": "^1.12"
     }
 }

@@ -4,7 +4,7 @@ require "vendor/autoload.php";
 use GuzzleHttp\Client;
 
 function getContent() {
-    $token = '1485f6c927bac0fbb1ac2026abed6e41683322d971dda279d8f7df33d947db72685f09690afa4b126f559f7e599e54d4893c25b6a8a09282c03662c408c3f10fcacb6ad5bddbbcc7ef25de8ac178904f5cbdbacdd8879802de21d4d623bb72a246df80e112a81ae67797a01f8e17f44be864e803646bbe4026363cf8989d7f4e';
+    $token = 'a0b2ebfb9ed181e5df52be9216a5e33d72dc8a54178e37acceb1397c4be0c073ed2f36ef2d355c332e932ebddac8e63f6fbacf4cdce646e018fd505a9579acdd8cfe5690856ea85b8cf11d3847e2c6858eb4866c65cef92db5613d181c0344b35b1c63813aeeddfb48640bc83c9d3d5ab85fdde2e6c856d7f0f3698fec8658ec';
 
     $client = new Client([
         'base_uri' => 'http://localhost:1337/api/',
@@ -95,173 +95,51 @@ $content = $contentData->attributes;
 
     <!-- Featured Products -->
 
-    <div class="small-container">
+     <div class="small-container">
         <h2 class="title">Featured Products</h2>
         <div class="row">
+        <?php 
+        foreach ($content->featuredProducts as $featuredProduct){
+            ?>
             <div class="col-4">
-                <?php 
-                foreach($content->featuredProducts as $featuredProduct){
-                    ?>
-                    <a href="product_details.html"><img src="images/product-1.jpg"></a>
-                    <h4><php echo $featuredProduct-></h4>
-                    <div class="rating">
+                <a href="product_details.html"><img src=<?php echo $featuredProduct->image;?>></a>
+                <h4><?php echo $featuredProduct->name;?></h4>
+                <div class="rating" data-stars="5">
+                    <?php for($i=1; $i <= $featuredProduct->stars; $i++){?>
                         <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
+                    <?php } ?>
+                    <?php for($i=1; $i <= 5-$featuredProduct->stars; $i++){?>
                         <i class="fa fa-star-o"></i>
-                    </div>
-                    <p>$50.00</p>
-
-                <?php } ?>
-                <a href="product_details.html"><img src="images/product-1.jpg"></a>
-                <h4>Red Printed T-Shirt</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
+                    <?php } ?>
                 </div>
-                <p>$50.00</p>
+                <p>
+                    <?php echo $featuredProduct->price;?>
+                </p>
             </div>
-            <div class="col-4">
-                <img src="images/product-2.jpg">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4">
-                <img src="images/product-3.jpg">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4">
-                <img src="images/product-4.jpg">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
+        <?php } ?>
         </div>
+
         <h2 class="title">Latest Products</h2>
         <div class="row">
+        <?php
+        foreach ($content->latestProducts as $latestProduct){
+            ?>
             <div class="col-4">
-                <img src="images/product-5.jpg">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
+                <img src=<?php echo $latestProduct->image;?>>
+                <h4><?php echo $latestProduct->name;?></h4>
+                <div class="rating" data-stars="5">
+                    <?php for($i=1; $i <= $latestProduct->stars; $i++){?>
+                        <i class="fa fa-star"></i>
+                    <?php } ?>
+                    <?php for($i=1; $i <= 5-$latestProduct->stars; $i++){?>
+                        <i class="fa fa-star-o"></i>
+                    <?php } ?>
                 </div>
-                <p>$50.00</p>
+                <p><?php 
+                echo $latestProduct->price;?>
+                </p>
             </div>
-            <div class="col-4">
-                <img src="images/product-6.jpg">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4">
-                <img src="images/product-7.jpg">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4">
-                <img src="images/product-8.jpg">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4">
-                <img src="images/product-9.jpg">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4">
-                <img src="images/product-10.jpg">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4">
-                <img src="images/product-11.jpg">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4">
-                <img src="images/product-12.jpg">
-                <h4>Red Printed T-Shirt</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
+            <?php } ?>
         </div>
     </div>
 
@@ -287,48 +165,27 @@ $content = $contentData->attributes;
     <div class="testimonial">
         <div class="small-container">
             <div class="row">
+                <?php
+                foreach ($content->testimonials as $testimonial) {
+                ?>  
                 <div class="col-3">
                     <i class="fa fa-quote-left"></i>
-                    <p>Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        industry's standard dummy text.</p>
+                    <p><?php echo $testimonial->testimonial?></p>
                     <div class="rating">
+                    <?php 
+                        for($i=1; $i <= $testimonial->stars; $i++){
+                    ?>    
                         <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
+                    <?php } ?>
+                    <?php for($i=1; $i <= (5 - $testimonial->stars); $i++){
+                    ?>    
+                        <i class="fa fa-star-o"></i>
+                    <?php } ?>
                     </div>
-                    <img src="images/user-1.png">
-                    <h3>Sean Parker</h3>
+                    <img src="<?php echo $testimonial->picture?>">
+                    <h3><?php echo $testimonial->name?></h3>
                 </div>
-                <div class="col-3">
-                    <i class="fa fa-quote-left"></i>
-                    <p>Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        industry's standard dummy text.</p>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                    </div>
-                    <img src="images/user-2.png">
-                    <h3>Mike Smith</h3>
-                </div>
-                <div class="col-3">
-                    <i class="fa fa-quote-left"></i>
-                    <p>Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        industry's standard dummy text.</p>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                    </div>
-                    <img src="images/user-3.png">
-                    <h3>Mabel Joe</h3>
-                </div>
+                <?php } ?>
             </div>
         </div>
     </div>
@@ -370,8 +227,8 @@ $content = $contentData->attributes;
                     </div>
                 </div>
                 <div class="footer-col-2">
-                    <img src="images/logo-white.png">
-                    <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the Many.
+                    <img src="<?php echo $content->footerLogo;?>">
+                    <p><?php echo $content->footerSlogan;?>
                     </p>
                 </div>
                 <div class="footer-col-3">
